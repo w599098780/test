@@ -1,0 +1,18 @@
+错误的捕获方式
+即时运行错误的捕获方式
+1)try... catch
+2)window.onerror
+
+资源加载错误
+1)object.onerror 
+2)performance.getEntries()
+3)Error事件捕获
+window.addEventListener('error',funtion(){
+    
+})
+
+
+跨域的js运行错误可以捕获吗，错误提示是什么，应该怎么处理
+可以捕获到，错误信息script error
+解决1.script标签增加crossorigin属性
+    2.设置js资源响应头Access-Control-Origin:*;

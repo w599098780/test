@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='div1'>111</div>
+     
+</body>
+<script>
+    // 类的声明
+    function Animal(name){
+        this.name=name
+    }
+
+    // es6
+    class Animal2{
+        constructor(name){
+            this.name=name
+        }
+    }
+    console.log(new Animal('1'),new Animal2(2))
+
+    //借助构造函数实现继承 缺点 prototype没有办法继承
+    function Parent1(){
+        this.name='Parent1'
+    }
+    function Child1(){
+        Parent1.call(this)
+        this.type='Child1'
+    }
+   // console.log(new Child1())
+
+    //借助原型链实现继承  缺点，声明两个对象实例，改其中一个另一个也变
+
+    function Parent2(){
+        this.name='Parent2'
+    }
+    function Child2(){
+        this.type='Child2'
+    }
+    Child2.prototype=new Parent2()
+    console.log(new Child2())
+
+    //组合方式  
+
+    function Parent3(){
+        this.name='Parent3'
+    }
+    function Child3(){
+        Parent3.call(this)
+        this.type='Child3'
+    }
+   // Child3.prototype=new Parent3()
+//    优化
+  Child3.prototype=Parent3.prototype
+ 
+
+ //组合2
+    function Parent4(){
+            this.name='Parent3'
+        }
+    function Child4(){
+        Parent4.call(this)
+        this.type='Child4'
+    }
+    Child4.prototype=Object.create(Parent4.prototype)
+    Child4.prototype.constructor=Child4
+
+
+    // 贴近开发的继承的实例
+    function Elem(id){
+        this.dom =document.getElementById(id)
+    }
+    Elem.prototype.html=function(val){
+        var elem=this.dom
+        if(val){
+            elem.innerHTML=val
+            return this
+        }else{
+            return elem.innerHTML
+        }
+    }
+    Elem.prototype.on=function(type,fn){
+        var elem=this.dom
+        elem.addEventListener(type,fn)
+    }
+    var div1=new Elem('div1')
+    div1.html('<p>hello world</p>')
+    console.log( div1.html('<p>hello world</p>'))
+    div1.on('click',function(){
+        alert('11')
+    })
+
+    function _new(foo,...arg){
+        const obj=Object.create(foo.prototype)
+        const ret=foo.call(obj,arg)
+        return ret instanceof Object ? ret : obj
+        
+    }
+
+
+
+
+
+
+
+</script>
+</html>

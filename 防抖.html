@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>debounce</title>
+</head>
+<style>
+        #container{
+            width: 100%; height: 200px; line-height: 200px; text-align: center; color: #fff; background-color: #444; font-size: 30px;
+        }
+    </style>
+<body>
+        <div id="container"></div>
+    
+</body>
+<script>
+    //防抖  immediate是否立即执行
+    //优化
+    function debounce(func,wait,immediate){
+        let timeout=null
+        return function(){
+            let self=this
+            var args = arguments;
+            if(timeout)clearTimeout(timeout)
+            if(immediate){
+                var callNow=!timeout
+                timeout=setTimeout(()=>{
+                    timeout=null
+                },wait)
+                if(callNow) func.apply(self,args)
+            }
+            timeout=setTimeout(()=>{
+                func.apply(self,args)
+            },wait)
+        }
+    }
+    //简单版
+    function debounce1(func,wait){
+        let timeout=null;
+        return function(){
+            clearTimeout(timeout)
+            timeout=setTimeout(()=>{
+                func.apply(this,arguments)
+            },wait)
+        }
+    }
+    
+    var count = 1;
+    var container = document.getElementById('container');
+
+    function getUserAction() {
+        container.innerHTML = count++;
+    };
+
+    container.onmousemove = debounce(getUserAction,3000,true);
+
+  
+
+</script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>设计模式</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //1.工厂模式
+    function createPerson(name,age,job){
+        var obj=new Object();
+        obj.name=name;
+        obj.age=age;
+        obj.job=job
+        obj.speak=function(){
+            console.log('说话')
+        }
+        return obj
+    }
+    var person1=createPerson('ypm',20,'前端')
+    //注释:解决了创建多个对象的问题,但是没有结解决对象识别的问题(怎样知道一个对象的类型)
+
+    //2.构造函数模式
+    function Person(name,age,Job){
+        this.name=name;
+        this.age=age;
+        this.job=job;
+        this.speck=function(){
+            console.log(this.name)
+        }
+    }
+    var person2=new Person('tom',20,'前端')
+    //注释:没有显示的创建对象,没有返回语句,直接将属性赋给this对象,将Person的实例对象标识为一种特定的类型
+//缺点:每个方法在每个实例上面都需要重新定义一遍,
+
+//3.原型模式
+function Person(){
+    
+}
+Person.prototype.name='ee'
+Person.prototype.age=20;
+var person3 = new Person()
+// 注意:省略了为构造函数传递初始化参数,结果所有实例享有相同的属性(对于函数实用,但是对于那些基本属性也说的过去,但是对于引用类型的数据就麻烦了)
+// 基本属性我们可以在实例当中添加一个同名属性,这样可以隐藏原型当中的对应的属性,但是引用类型的属性却会导致所有实例共享
+
+
+//4:组合使用构造函数与原型模式
+function Person(name,age,job){
+    this.name=name;
+    this.age=age;
+    this.job=job
+}
+Person.prototype.say=function(){
+    console.log('11')
+}
+var person4 = new Person()
+//5:动态原型模式
+function Person(name,age,job){
+    this.name = name;
+    this.age = age;
+    this.job = job;    
+    if(typeof this.speak != "function"){
+        Person.speak = function(){
+            console.log(this.name);
+        };
+    }
+} 
+
+
+
+</script>
+</html>

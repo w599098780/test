@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+</body>
+<script>
+    //第一种字面量和new Object声明一个函数
+    var o1={name:1,age:12}
+    var o2=new Object({name:1,age:12})
+    console.log('o1',o1)
+    console.log('o2',o2)
+    //第二种 构造函数
+    function M(){
+        this.name=1;
+        this.age=12
+    }
+    var o3=new M()
+    console.log('o3',o3)
+  
+  
+
+    //第三种 Object.create
+    var P={name:1,age:12}
+    var o4=Object.create(P)
+    console.log('o4',o4)
+
+   
+
+
+</script>
+</html>

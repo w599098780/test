@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //new 运算符
+    //创建一个新对象，他继承来自foo.prototype
+    //构造函数foo被执行，执行的时候，相应的传参会被传入，同时上下文（this）
+    //会被指定为这个新实例，new foo 等于new foo(),只能用在不传递任何参数的情况
+
+    //如果构造函数返回一个对象，那么这个对象会取代整个new出来的结果，如果构造函数没有返回对象，那么new 出来的结果为步骤1创建的对象
+    function _new(foo,...arg){
+        const obj=Object.create(foo.prototype)
+        const ret=foo.apply(obj,arg)
+        return ret instanceof Object ? ret :obj
+    }
+
+   
+
+</script>
+</html>

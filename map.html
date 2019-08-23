@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>map</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //map 转数组
+   // const map=new Map([[1,2],[2,2],[3,2]])
+   // console.log([...map])
+
+    //数组转map
+   // const map=new Map([[1,2],[2,2],[3,2]])
+  //  console.log(map)
+
+  //map转object
+//   function mapToObject(map){
+
+//       let obj={}
+//       for (let [key,value] of map){
+//         obj[key]=value
+//       }
+//       return obj
+
+//   }
+//   const map = new Map().set('name', 'An').set('des', 'JS')
+//   console.log( mapToObject(map) )  
+
+
+//object 转Map
+// function objToMap(obj){
+//     let map=new Map();
+//     for (let key of Object.keys(obj)){
+//         map.set(key,obj[key])
+//     }
+//     return map
+// }
+// objToMap({'name': 'An', 'des': 'JS'}) 
+// console.log(objToMap({'name': 'An', 'des': 'JS'}) )
+
+//map 转json
+function mapToString(map){
+   return JSON.stringify( [...map])
+
+}
+
+
+
+</script>
+</html>

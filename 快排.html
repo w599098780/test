@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快排</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function quickSort(arr){
+        if(arr.length<=1){
+            return arr
+        }
+        var pivotIndex=Math.floor(arr.length/2)
+        //取基准点的值,splice(index,1)函数可以返回数组中被删除的那个数
+        var pivot=arr.splice(pivotIndex,1)[0]
+        var left=[];
+        var right=[];
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]<pivot){
+                left.push(arr[i])
+            }else{
+                right.push(arr[i]) 
+            }
+        }
+       //递归执行以上操作,对左右两个数组进行操作，直到数组长度为<=1； 
+       return quickSort(left).concat([pivot],quickSort(right))
+     }
+   console.log(quickSort([3.4,5.4,5.6,9,690,44])) 
+
+   
+
+</script>
+</html>

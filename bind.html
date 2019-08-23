@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bind</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function funcBind(...arg){
+        console.log(this)
+        console.log(arg)
+    }
+    funcBind.prototype.miaov=function(){
+        console.log('miaov')
+    }
+    let newFun=funcBind.bind([1,2,3],456,2,5,2)
+    let f=new newFun(789);
+    console.log(f.miaov)
+    // function funcCall(...arg){
+    //     console.log(this)
+    //     console.log(arg)
+    // }
+    // funcCall.call([1,2,3],1,2,3,4,5,6,6)
+    // function funcApply(...arg){
+    //     console.log(this)
+    //     console.log(arg)
+    // }
+    // funcApply.apply([1,2,3],[1,2,3,4,4])
+
+console.log('------------------------------------------------------')
+
+    //手动实现bind函数
+    Function.prototype.customeBind=function(thisArg,...list){
+    
+        let self=this;
+        let bound=function(...arg){
+            //如果这个函数作为了构造函数，那么目标函数的this,应该执行的是实例对象
+            //如果这个不是作为构造函数，目标函数中的this还是指向thisArg
+            let thisArgSelf=this instanceof bound ? this : thisArg;
+          //  console.log(this,'this')
+            self.apply(thisArgSelf,[...list,...arg])
+        }
+        //原型继承
+        bound.prototype=Object.create(self.prototype)
+        bound.prototype.constructor=self
+        return bound
+
+    }
+    let custFun=funcBind.customeBind([1,2,3],456,2,5,2)
+   let cf=new custFun(789)
+   console.log(cf.miaov)
+ //custFun()
+
+
+
+</script>
+</html>

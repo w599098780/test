@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //第一种方法
+    var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+
+    //arr.toString().split(',')
+    let newArr=arr.toString().split(',')
+    let setArr=[...new Set(newArr)].sort((a,b)=>a-b)
+    console.log(setArr)
+
+    //第二种
+    Array.prototype.flat=function(){
+    
+        return [].concat(...this.map(item=>(Array.isArray(item) ? item.flat():[item])))
+    }
+    Array.prototype.unqiue=function(){
+        return [...new Set(this)]
+    }
+    arr.flat().unqiue().sort((a,b)=>a-b)
+    console.log( arr.flat().unqiue().sort((a,b)=>a-b))
+
+    
+
+</script>
+</html>

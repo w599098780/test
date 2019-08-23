@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var xhr=XMLHttpRequest ? new XMLHttpRequest() : new window.ActiveXObject('Microsoft.XMLHTTP')
+    xhr.open('get',url,true)
+    xhr.onreadystatechange=function(){
+        if(xhr.state===200 && xhr.readyState===4){
+            console.log('成功')
+        }else{
+            console.log('失败')
+        }
+    }
+    xhr.send();
+
+    // 同源策略
+    // 同源是指：1.js脚本只能访问或者请求相同协议，相同domain(网址/ip)，相同端口的页面。2. jsonp在调用失败的时候不会返回各种HTTP状态码。
+              //3.安全性查 4.不能解决不同域的两个页面之间如何进行JavaScript调用的问题
+
+    //跨域的几种方式
+    // jsonp 缺点：1它只支持GET请求而不支持POST
+    // hash
+    // postMessage
+    // WebSocket
+    // CORS
+
+    // 写一个简单的jsonp(原理)
+   
+    var url="xxx"
+    var script=document.createElement('script')
+    script.setAttribute('src',url)
+    document.getElementByTagName('head')[0].appendChild(script)
+    var callBack= function(data){
+        
+    };
+
+   // CORS用法
+   fetch(url,{
+       method:'get'
+   }).then(function(res){
+
+   }).catch(function(err){
+
+   })
+
+   
+
+
+
+
+
+</script>
+</html>

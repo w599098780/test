@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src='myPromise.js'></script>
+<script>
+
+    //1. new Promise 接受一个函数 executor
+    //2.函数executor 接受2个参数，resolve,reject
+    //调用resolve的时候，把promise对象转成成功状态
+     //调用reject的时候，把promise对象转成失败状态
+    // 3.promise 对象的then方法来注册成功状态或者失败状态要执行的函数
+   // 4.实现一个promise对象调用多次then方法
+   //5.then 函数的链式操作
+  // p.then().then()
+  //6.thenable
+  //拥有then方法的对象或者函数
+//   {
+     // then(){}
+//   }
+//7.当给resolve传入一个promise对象的时候，只有等到promise对象装成成功或者失败，resolve才会成功
+//resolve 要接受的参数
+  //1.简单值
+  //2.接受thenable对象
+  let p2=new CustomePromise((resolve,reject)=>{
+    setTimeout(()=>{
+       resolve('p2 成功')
+    },5000)
+  })
+  let p=new CustomePromise((resolve,reject)=>{
+     setTimeout(()=>{
+       resolve(p2)
+    },1000)
+  })
+  p.then(res=>{
+      console.log('1',res)
+  })
+  .then(123)
+  .then(res=>{
+      console.log('3',res)
+  })
+ 
+  console.log('我先执行')
+
+  
+</script>
+
+</html>
